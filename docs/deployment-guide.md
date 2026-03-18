@@ -47,17 +47,17 @@ O projeto está configurado para usar um backend `azurerm` no ambiente dev, defi
 
 Antes de correr o Terraform, cria:
 
-- Um **Resource Group** para o estado (por exemplo, `rg-tfstate-dev`)
+- Um **Resource Group** para o estado (por exemplo, `CODE-1`)
 - Uma **Storage Account** (por exemplo, `stterraformdev0001`)
 - Um **contentor** de blobs (por exemplo, `tfstate`)
 
 Exemplo de criação (ajustar nomes, localização e SKU conforme necessário):
 
 ```bash
-az group create -n rg-tfstate-dev -l westeurope
+az group create -n CODE-1 -l westeurope
 
 az storage account create \
-	-g rg-tfstate-dev \
+	-g CODE-1 \
 	-n stterraformdev0001 \
 	-l westeurope \
 	--sku Standard_LRS

@@ -112,15 +112,15 @@ az account show           # confirmar subscription em uso
 
 O ficheiro `platforms/dev/backend.tf` assume um backend do tipo `azurerm`. Antes de correr o Terraform, garante que existe:
 
-- Um resource group para o estado (por exemplo, `rg-tfstate-dev`)
+- Um resource group para o estado (por exemplo, `CODE-1`)
 - Uma storage account (por exemplo, `stterraformdev0001`)
 - Um contentor de blobs (por exemplo, `tfstate`)
 
 Exemplo (ajustar nomes à tua realidade):
 
 ```bash
-az group create -n rg-tfstate-dev -l westeurope
-az storage account create -g rg-tfstate-dev -n stterraformdev0001 -l westeurope --sku Standard_LRS
+az group create -n CODE-1 -l westeurope
+az storage account create -g CODE-1 -n stterraformdev0001 -l westeurope --sku Standard_LRS
 az storage container create --account-name stterraformdev0001 -n tfstate
 ```
 
