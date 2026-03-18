@@ -1,0 +1,29 @@
+﻿# Valores de exemplo para o ambiente dev
+
+location    = "westeurope"
+prefix      = "alz"
+environment = "dev"
+
+# Opcional: ID do management group pai (se já existir uma hierarquia acima)
+# management_group_parent_id = "/providers/Microsoft.Management/managementGroups/root-mg-id"
+
+# Opcional: scope para policy assignments (subscription ou management group)
+# policy_scope = "/subscriptions/00000000-0000-0000-0000-000000000000"
+
+# Opcional: parâmetros para a policy de Allowed locations
+# policy_parameters_json = jsonencode({
+#   listOfAllowedLocations = {
+#     value = ["westeurope"]
+#   }
+# })
+
+# Opcional: RBAC para um principal específico
+# rbac_principal_id         = "00000000-0000-0000-0000-000000000000" # Object ID de utilizador/grupo/SPN
+# rbac_role_definition_name = "Reader"
+# rbac_scope                = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/alz-dev-logging-rg"
+
+# Tags adicionais (podem ser deixadas vazias)
+# tags = {
+#   cost_center = "CC01"
+#   owner       = "team-platform"
+# }

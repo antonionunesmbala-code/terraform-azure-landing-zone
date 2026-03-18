@@ -1,0 +1,6 @@
+﻿# Valores de exemplo para a plataforma básica
+
+location    = "westeurope"
+prefix      = "alz"
+environment = "dev"
+
