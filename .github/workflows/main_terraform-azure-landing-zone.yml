@@ -21,6 +21,8 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
 
       - name: Login to Azure using OIDC
         uses: azure/login@v2
@@ -46,7 +48,15 @@ jobs:
           ARM_USE_OIDC: true
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -no-color -out=tfplan
+        env:
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          ARM_USE_OIDC: true
+
+      - name: Show Terraform Plan
+        run: terraform show -no-color tfplan
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
