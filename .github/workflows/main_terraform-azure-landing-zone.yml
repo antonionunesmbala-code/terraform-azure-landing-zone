@@ -32,7 +32,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -input=false
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
@@ -51,13 +51,21 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: true
 
+          TF_VAR_location: ${{ vars.TF_VAR_location }}
+          TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
+          TF_VAR_environment: ${{ vars.TF_VAR_environment }}
+
       - name: Terraform Plan
-        run: terraform plan -no-color -out=tfplan
+        run: terraform plan -no-color -out=tfplan -input=false
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: true
+
+          TF_VAR_location: ${{ vars.TF_VAR_location }}
+          TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
+          TF_VAR_environment: ${{ vars.TF_VAR_environment }}
 
       - name: Show Terraform Plan
         run: terraform show -no-color tfplan
