@@ -1,0 +1,65 @@
+name: Terraform Destroy - Dev
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform-destroy-dev:
+    runs-on: windows-latest
+    permissions:
+      id-token: write # required for OIDC login to Azure
+      contents: read # required for actions/checkout
+    defaults:
+      run:
+        working-directory: ./platforms/dev
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Login to Azure using OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Terraform Init (Destroy)
+        run: terraform init -input=false
+        env:
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          ARM_USE_OIDC: true
+
+          TF_VAR_location: ${{ secrets.TF_VAR_LOCATION }}
+          TF_VAR_prefix: ${{ secrets.TF_VAR_PREFIX }}
+          TF_VAR_environment: ${{ secrets.TF_VAR_ENVIRONMENT }}
+
+      - name: Terraform Plan Destroy
+        run: terraform plan -destroy -out=tfplan -input=false
+        env:
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          ARM_USE_OIDC: true
+
+          TF_VAR_location: ${{ secrets.TF_VAR_LOCATION }}
+          TF_VAR_prefix: ${{ secrets.TF_VAR_PREFIX }}
+          TF_VAR_environment: ${{ secrets.TF_VAR_ENVIRONMENT }}
+
+      - name: Terraform Destroy Apply
+        run: terraform apply -auto-approve tfplan
+        env:
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          ARM_USE_OIDC: true
+
+          TF_VAR_location: ${{ secrets.TF_VAR_LOCATION }}
+          TF_VAR_prefix: ${{ secrets.TF_VAR_PREFIX }}
+          TF_VAR_environment: ${{ secrets.TF_VAR_ENVIRONMENT }}
