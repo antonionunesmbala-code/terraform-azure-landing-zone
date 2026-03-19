@@ -39,6 +39,10 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: true
 
+          TF_VAR_location: ${{ vars.TF_VAR_location }}
+          TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
+          TF_VAR_environment: ${{ vars.TF_VAR_environment }}
+
       - name: Terraform Validate
         run: terraform validate
         env:
@@ -63,6 +67,10 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: true
 
+          TF_VAR_location: ${{ vars.TF_VAR_location }}
+          TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
+          TF_VAR_environment: ${{ vars.TF_VAR_environment }}
+
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve tfplan
       #   env:
@@ -70,4 +78,6 @@ jobs:
       #     ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       #     ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       #     ARM_USE_OIDC: true
-          
+      #     TF_VAR_location: ${{ vars.TF_VAR_location }}
+      #     TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
+      #     TF_VAR_environment: ${{ vars.TF_VAR_environment }}
