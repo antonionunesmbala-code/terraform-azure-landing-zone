@@ -39,9 +39,9 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: true
 
-          TF_VAR_location: ${{ vars.TF_VAR_location }}
-          TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
-          TF_VAR_environment: ${{ vars.TF_VAR_environment }}
+          TF_VAR_location: ${{ secrets.TF_VAR_LOCATION }}
+          TF_VAR_prefix: ${{ secrets.TF_VAR_PREFIX }}
+          TF_VAR_environment: ${{ secrets.TF_VAR_ENVIRONMENT }}
 
       - name: Terraform Validate
         run: terraform validate
@@ -51,9 +51,9 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: true
 
-          TF_VAR_location: ${{ vars.TF_VAR_location }}
-          TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
-          TF_VAR_environment: ${{ vars.TF_VAR_environment }}
+          TF_VAR_location: ${{ secrets.TF_VAR_LOCATION }}
+          TF_VAR_prefix: ${{ secrets.TF_VAR_PREFIX }}
+          TF_VAR_environment: ${{ secrets.TF_VAR_ENVIRONMENT }}
 
       - name: Terraform Plan
         run: terraform plan -no-color -out=tfplan -input=false
@@ -63,9 +63,9 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: true
 
-          TF_VAR_location: ${{ vars.TF_VAR_location }}
-          TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
-          TF_VAR_environment: ${{ vars.TF_VAR_environment }}
+          TF_VAR_location: ${{ secrets.TF_VAR_LOCATION }}
+          TF_VAR_prefix: ${{ secrets.TF_VAR_PREFIX }}
+          TF_VAR_environment: ${{ secrets.TF_VAR_ENVIRONMENT }}
 
       - name: Show Terraform Plan
         run: terraform show -no-color tfplan
@@ -75,9 +75,9 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: true
 
-          TF_VAR_location: ${{ vars.TF_VAR_location }}
-          TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
-          TF_VAR_environment: ${{ vars.TF_VAR_environment }}
+          TF_VAR_location: ${{ secrets.TF_VAR_LOCATION }}
+          TF_VAR_prefix: ${{ secrets.TF_VAR_PREFIX }}
+          TF_VAR_environment: ${{ secrets.TF_VAR_ENVIRONMENT }}
 
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve tfplan
@@ -86,6 +86,6 @@ jobs:
       #     ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       #     ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       #     ARM_USE_OIDC: true
-      #     TF_VAR_location: ${{ vars.TF_VAR_location }}
-      #     TF_VAR_prefix: ${{ vars.TF_VAR_prefix }}
-      #     TF_VAR_environment: ${{ vars.TF_VAR_environment }}
+      #     TF_VAR_location: ${{ secrets.TF_VAR_LOCATION }}
+      #     TF_VAR_prefix: ${{ secrets.TF_VAR_PREFIX }}
+      #     TF_VAR_environment: ${{ secrets.TF_VAR_ENVIRONMENT }}
