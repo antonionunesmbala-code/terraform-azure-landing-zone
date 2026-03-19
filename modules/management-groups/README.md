@@ -37,7 +37,7 @@ Os nomes técnicos dos management groups são construídos a partir da chave ló
 		additional_management_groups = {
 			"corp" = {
 				display_name = "Corp"
-				parent       = "landing-zones" # ou outra chave existente
+				parent       = "landing-zones" # um dos grupos base ('platform', 'landing-zones', 'sandbox') ou um ID de management group externo
 			}
 		}
 		```
