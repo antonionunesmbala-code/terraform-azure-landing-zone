@@ -1,5 +1,11 @@
 ﻿# Azure Landing Zone Foundation com Terraform
 
+![IaC](https://img.shields.io/badge/IaC-Terraform-blue)
+![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple)
+![Cloud](https://img.shields.io/badge/Cloud-Azure-blue)
+![CI/CD](https://img.shields.io/badge/CI-GitHub%20Actions-black)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 ## Visão geral
 
 Este repositório contém uma implementação inicial de uma **Azure Landing Zone** utilizando **Terraform**, focada em boas práticas, modularidade e clareza de código.
@@ -50,6 +56,8 @@ A arquitetura desta landing zone é organizada em três camadas principais:
 - **Workloads / future layer**: camada preparada para, no futuro, receber subscrições e workloads de negócio que consumirão esta fundação
 
 Os módulos em `modules/` representam blocos de construção para estas camadas, enquanto `platforms/dev/` mostra um exemplo concreto de composição para um ambiente de desenvolvimento.
+
+![Arquitetura da Azure Landing Zone](docs/terraform-azure-landing-zone.JPG)
 
 Para uma descrição detalhada da arquitetura, ver:
 
