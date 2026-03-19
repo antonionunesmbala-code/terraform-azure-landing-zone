@@ -6,6 +6,7 @@ Este módulo gere **atribuições de políticas (Azure Policy Assignments)** de 
 
 - Fornecer um ponto de partida mínimo para governance
 - Atribuir uma policy built‑in (por omissão, *Allowed locations*) a um scope
+- Suportar assignments a vários tipos de scope (management group, subscription, resource group ou recurso)
 - Não criar assignments quando não há scope definido, evitando falhas em ambientes sem permissões
 
 ---
@@ -13,14 +14,17 @@ Este módulo gere **atribuições de políticas (Azure Policy Assignments)** de 
 ## Recursos criados
 
 - `data.azurerm_policy_definition.this` – Policy definition built‑in obtida por display name
-- `azurerm_policy_assignment.this` – Policy assignment (criado apenas se `policy_scope` for definido)
+- `azurerm_management_group_policy_assignment.this` – Policy assignment por management group (quando `policy_scope` é um ID de management group)
+- `azurerm_subscription_policy_assignment.this` – Policy assignment por subscription (quando `policy_scope` é um ID de subscription)
+- `azurerm_resource_group_policy_assignment.this` – Policy assignment por resource group (quando `policy_scope` é um ID de resource group)
+- `azurerm_resource_policy_assignment.this` – Policy assignment por recurso individual (quando `policy_scope` é um ID de recurso)
 
 ---
 
 ## Variáveis principais
 
 - `policy_scope` (string, opcional)
-	- Scope onde a policy será atribuída (management group ou subscription)
+	- ID do scope onde a policy será atribuída (management group, subscription, resource group ou recurso)
 	- Se vazio, **nenhum** policy assignment é criado
 
 - `policy_definition_display_name` (string, opcional)

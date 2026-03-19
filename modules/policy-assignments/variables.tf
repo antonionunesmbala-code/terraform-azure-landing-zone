@@ -1,5 +1,5 @@
 ﻿variable "policy_scope" {
-	description = "Scope onde a policy será atribuída (management group ou subscription). Se vazio, nenhum assignment é criado."
+	description = "ID do scope onde a policy será atribuída (management group, subscription, resource group ou recurso). Se vazio, nenhum assignment é criado."
 	type        = string
 	default     = ""
 }
